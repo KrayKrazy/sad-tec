@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Infinite Slider Animation */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-250px * 7)); }
+}
+.slider {
+  background: white;
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, .125);
+  height: 100px;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.slider::before, .slider::after {
+  background: linear-gradient(to right,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+  content: "";
+  height: 100px;
+  position: absolute;
+  width: 200px;
+  z-index: 2;
+}
+.slider::after {
+  right: 0;
+  top: 0;
+  transform: rotateZ(180deg);
+}
+.slider::before {
+  left: 0;
+  top: 0;
+}
+.slide-track {
+  animation: scroll 40s linear infinite;
+  display: flex;
+  width: calc(250px * 14);
+}
+.slide-item {
+  height: 100px;
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.slide-item img {
+  max-height: 60px;
+  max-width: 180px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+.slide-item img:hover {
+  filter: grayscale(0%);
+}
+
+/* O.S Form styling matching the paper */
+.os-form input, .os-form textarea {
+  border: none;
+  border-bottom: 1px solid #94a3b8;
+  background: transparent;
+  width: 100%;
+  outline: none;
+  padding: 4px;
+  font-size: 0.875rem;
+}
+.os-form label {
+  font-weight: bold;
+  font-size: 0.75rem;
+  color: #334155;
+}
+.os-table th, .os-table td {
+  border: 1px solid #cbd5e1;
+  padding: 4px;
+  text-align: left;
+  font-size: 0.875rem;
+}
+
+/* PDF Generation Area - We make it look like the paper */
+#os-pdf-area {
+  background-color: #fef9c3; /* Yellow-ish like the paper */
+  color: #000;
+  font-family: Arial, sans-serif;
+}
